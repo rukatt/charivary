@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}charivary.fr{% endblock %}
+        </title>
+        {% block stylesheets %}
+            <style>
+             body {
+                 color:#242729;
+                 font-family:"Helvetica Neue",Helvetica,sans-serif;
+                 font-size:14px;
+                 line-height:1.30769231;
+                 margin: auto;
+             }
+             marquee {
+                 background-color:yellow;
+             }
+            </style>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            <marquee><h1>⭐ Bienvenue sur le meilleur réseau social de France ⭐</h1></marquee>
+            {% for pst in posts %}
+                <p>{{ pst.content }}</p>
+                <p>User : {{ pst.user.username }} - Date : {{ pst.postdate | date('d-m-Y - H:i:s') }}</p>
+            {% endfor %}
+
+            <form action="/create_post" method="post">
+                <textarea name="new_content" rows="5" cols="60" placeholder="Post your thoughts here..."></textarea>
+                <br>
+                <input type="submit" value="Submit">
+            </form> 
+        {% endblock %}
+        {% block javascripts %}
+            
+        {% endblock %}
+    </body>
+</html>
